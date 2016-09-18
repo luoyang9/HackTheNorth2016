@@ -2,6 +2,9 @@
 
 public class EnemyHealth : MonoBehaviour
 {
+    GameController gameController;
+    private AudioSource dieSound;
+
     public int startingHealth = 100;
     public int currentHealth;
     public float sinkSpeed = 2.5f;
@@ -14,6 +17,8 @@ public class EnemyHealth : MonoBehaviour
     void Awake()
     {
         currentHealth = startingHealth;
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+        dieSound = GetComponent<AudioSource>();
     }
 
 
@@ -42,8 +47,11 @@ public class EnemyHealth : MonoBehaviour
 
     void Death()
     {
+        gameController.GotOne();
         isDead = true;
         StartSinking();
+
+        dieSound.Play();
     }
 
 

@@ -9,7 +9,6 @@ public class EnemyAttack : MonoBehaviour
     GameObject player;
     PlayerHealth playerHealth;
     //EnemyHealth enemyHealth;
-    bool playerInRange;
     float timer;
 
 
@@ -20,30 +19,11 @@ public class EnemyAttack : MonoBehaviour
         //enemyHealth = GetComponent<EnemyHealth>();
     }
 
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == player)
-        {
-            playerInRange = true;
-        }
-    }
-
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject == player)
-        {
-            playerInRange = false;
-        }
-    }
-
-
     void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer >= timeBetweenAttacks && playerInRange/* && enemyHealth.currentHealth > 0*/)
+        if (timer >= timeBetweenAttacks && Vector3.Distance(player.transform.position, transform.position) <= 1.5f/* && enemyHealth.currentHealth > 0*/)
         {
             Attack();
         }

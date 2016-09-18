@@ -12,6 +12,11 @@ public class EnemyManager : MonoBehaviour {
 	void Start () {
         InvokeRepeating("Spawn", spawnTime, spawnTime);
 	}
+
+    void Update() {
+        spawnTime -= 0.01f;
+        if (spawnTime < 0.5f) spawnTime = 0.5f;
+    }
 	
 	// Update is called once per frame
 	void Spawn () {

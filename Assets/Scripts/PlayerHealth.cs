@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public GameController gameController;
+    private AudioSource hurtSound;
+    private AudioSource screamSound;
+
     public int startingHealth = 100;
     public int currentHealth;
     public float flashSpeed = 5f;
@@ -20,6 +24,9 @@ public class PlayerHealth : MonoBehaviour
     {
         //playerShooting = GetComponentInChildren <PlayerShooting> ();
         currentHealth = startingHealth;
+        isDead = false;
+        hurtSound = GetComponent<AudioSource>();
+        screamSound = GameObject.Find("ScreamSound").GetComponent<AudioSource>();
     }
 
 
@@ -39,12 +46,21 @@ public class PlayerHealth : MonoBehaviour
         {
             Death();
         }
+        else
+        {
+            hurtSound.Play();
+        }
+
     }
 
 
     void Death()
     {
         isDead = true;
+
+        screamSound.Play();
+
+        gameController.GameOver();
 
         //playerShooting.DisableEffects ();
    
