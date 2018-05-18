@@ -1,4 +1,4 @@
-# HackTheNorth2016
+# Scary Bears Cardboard Game
 
 Demo: https://www.youtube.com/watch?v=ihczpw6ch0o
 Scary Bears VR made at Hack the North 2016.
